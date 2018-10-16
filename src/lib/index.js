@@ -13,7 +13,7 @@ export default {
         return Object.entries(value).reduce((newProps, [ type, fn ]) => {
           newProps[key] = {
             ...newProps[key],
-            [type]: typeof fn === 'function' ? props[key][type].bind(this, type === 'validator' && this.$props[key]) : props[key][type]
+            [type]: typeof fn === 'function' ? props[key][type].bind(this, type === 'validator' && this.$props[key]) : { ...props[key][type] }
           }
 
           return newProps
