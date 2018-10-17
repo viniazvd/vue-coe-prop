@@ -16,24 +16,26 @@ export default {
   props: {
     name: {
       type: String
-      // coeValidator: function (value) {
-      //   console.log('this: ', this)
-      //   return true
-      // }
     },
 
     lastName: {
       type: String,
       required: true,
-      validator: v => console.log('thissssss', this) || !!v,
-      // validator: v => !!v,
+      validator: function (v) {
+        return console.log('this', this && !!this.dataType) || (this && !!this.dataType)
+      },
       default: () => ''
     }
   },
 
+  // beforeCreate () {
+  //   let strategies = Vue.config.optionMergeStrategies
+  //   strategies.props = this._$coeprops
+  // },
+
   data () {
     return {
-      dataType: false
+      dataType: true
     }
   }
 }
