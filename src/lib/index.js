@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 export default {
-  beforeMount () {
+  created () {
     let { props } = this.$options
 
     if (!props) return
@@ -31,5 +31,6 @@ export default {
 
     let strategies = Vue.config.optionMergeStrategies
     strategies.props = this._$coeprops
+    console.log(strategies)
   }
 }
