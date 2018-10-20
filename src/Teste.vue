@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import VueCoeProp from './lib'
 
 export default {
@@ -21,21 +22,22 @@ export default {
     lastName: {
       type: String,
       required: true,
-      validator: function (v) {
-        return console.log('this', this && !!this.dataType) || (this && !!this.dataType)
-      },
-      default: () => ''
+      validator (v) {
+        return console.log('this', this && this.hasError) || !!v
+      }
     }
   },
 
-  // beforeCreate () {
-  //   let strategies = Vue.config.optionMergeStrategies
-  //   strategies.props = this._$coeprops
-  // },
+  beforeCreate () {
+    let strategies = Vue.config.optionMergeStrategies
+    strategies.props = this._$coeprops
+
+    console.log('strategies', strategies)
+  },
 
   data () {
     return {
-      dataType: true
+      hasError: false
     }
   }
 }
